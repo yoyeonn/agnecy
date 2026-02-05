@@ -1,0 +1,374 @@
+/* ---------- Carousel ---------- */
+.main-image {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.carousel-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.5s ease;
+  border-radius: 10px;
+  z-index: 0;
+}
+.carousel-img.active { opacity: 1; z-index: 0; }
+.carousel-arrow {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  background: rgba(0,0,0,0.4);
+  color: #fff; border-radius: 50%;
+  border: none; cursor: pointer;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 24px; transition: all 0.3s ease;
+}
+.carousel-arrow.left { left: 10px; }
+.carousel-arrow.right { right: 10px; }
+.carousel-arrow:hover { background: #28a745; transform: translateY(-50%) scale(1.1); }
+.carousel-dots span {
+  width: 10px; height: 10px;
+  background: #ccc; border-radius: 50%;
+  margin: 0 4px; display: inline-block;
+  cursor: pointer; transition: all 0.3s;
+}
+.carousel-dots span.active { background: #28a745; transform: scale(1.2); }
+.thumbnail-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+.thumbnail-wrapper img {
+  width: 100px; height: 70px; object-fit: cover;
+  border-radius: 5px; border: 2px solid transparent;
+  cursor: pointer; transition: 0.3s;
+}
+.thumbnail-wrapper img.selected { border-color: #28a745; transform: scale(1.05); }
+
+/* ---------- General ---------- */
+.hotel-detail-page-container {
+  border: 2px solid #ddd; border-radius: 15px;
+  padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  background: #fff; margin: 20px auto;
+  max-width: 1200px; transition: all 0.3s ease;
+}
+.hotel-detail-page-container:hover { box-shadow: 0 12px 35px rgba(0,0,0,0.15); }
+h4 { position: relative; padding-bottom: 5px; }
+h4::after { content: ''; position: absolute; width: 40px; height: 3px; background: #28a745; bottom:0; left:0; border-radius:2px; }
+.hotel-name { font-weight:700; margin-bottom:5px; font-size:2rem; }
+.stars .fa-star { margin-right:2px; font-size:0.85rem; }
+
+/* ---------- Highlights ---------- */
+.highlights { background: #f7f9fb; padding: 20px; border-radius: 12px; display:flex; flex-wrap:wrap; gap:12px; }
+.highlight-item {
+  background: #fff; padding:10px 14px; border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08); font-size:14px; font-weight:500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.highlight-item:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+
+/* ---------- Room Cards ---------- */
+/* ✅ FULL FIX: same height cards even if title/description differ */
+
+.room-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* force same image height */
+.room-card img.card-img-top {
+  width: 100%;
+  height: 190px;           /* adjust if you want bigger/smaller */
+  object-fit: cover;
+}
+
+/* body fills remaining height */
+.room-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+/* title fixed height (2 lines max) */
+.room-card .card-body h5 {
+  min-height: 48px;
+  margin-bottom: 8px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;        /* change to 3 if you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* description fixed height + takes free space */
+.room-card .card-body .text-muted {
+  flex: 1;                      /* takes free space */
+  margin-bottom: 10px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;        /* change to 3 if you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* price always same bottom position */
+.room-card .card-body p:last-of-type {
+  margin-top: auto;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+/* keep button at bottom too (if you add it later) */
+.room-card .card-body .btn {
+  margin-top: 10px;
+}
+
+/* ---------- Booking ---------- */
+.booking {
+  background:#f7f9fb;
+  position:sticky;
+  top:20px;
+  border-radius:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.09);
+  padding:15px;
+}
+.booking input {
+  display:block;
+  width:100%;
+  margin-bottom:10px;
+  padding:7px 10px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+.booking input:focus { border-color:#28a745; box-shadow:0 0 5px rgba(40,167,69,0.3); }
+
+/* ---------- Nearby ---------- */
+.nearby { list-style:none; padding-left:0; }
+.nearby li { padding:6px 0; }
+
+/* ---------- FAQ ---------- */
+.card-header { background:#fff; cursor:pointer; padding:12px; border-bottom:1px solid #eee; }
+.card-header:hover { background:#f5f5f5; }
+.card-body { background:#fff; }
+.toggle-icon { float:right; font-weight:bold; }
+
+/* ---------- Related Hotels ---------- */
+.hotel-card {
+  display:flex;
+  flex-direction:column;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  transition:transform 0.3s, box-shadow 0.3s;
+  height:100%;
+}
+.hotel-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
+.hotel-img-wrapper { overflow:hidden; border-radius:12px 12px 0 0; position:relative; }
+.hotel-img { position:relative; width:100%; padding-top:56.25%; background-size:cover; background-position:center; transition:transform 0.5s; }
+.hotel-card:hover .hotel-img { transform:scale(1.05); }
+.hotel-img .price { position:absolute; bottom:10px; right:10px; background:#28a745; color:#fff; padding:5px 10px; border-radius:5px; font-weight:600; font-size:13px; }
+.hotel-content { display:flex; flex-direction:column; padding:15px; flex-grow:1; }
+.hotel-content .btn { margin-top:auto; font-weight:600; text-align:center; }
+.hotel-highlights li { font-size:12px; display:flex; align-items:center; margin-right:5px; }
+.hotel-highlights li i { margin-right:4px; }
+
+.booking-room-trigger {
+  background: #007bff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* ---------- Room Modal (FIXED CLICK + LAYERING) ---------- */
+.room-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 0;
+}
+.modal-content {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  width: min(460px, 92vw);
+  max-height: min(80vh, 650px);
+  overflow: auto;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  animation: fadeInModal 0.2s ease-out;
+}
+@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+
+.room-selection {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.input-row input {
+  width: 100%;
+  text-align: center;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.remove-room {
+  margin-top: 6px;
+  background: #e74c3c;
+  border: none;
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.room-modal select.form-select,
+.room-modal select[name="selectRoom"] {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  background: #fff;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+}
+.room-modal select.form-select:focus,
+.room-modal select[name="selectRoom"]:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.18);
+}
+
+/* ---------- Accordion Style (FAQ + Hotel Info) ---------- */
+.accordion .card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.accordion .card-header {
+  background-color: #f8f9fa;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+.accordion .card-header:hover { background-color: #e9ecef; }
+
+.accordion .card-header h6 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.accordion .card-header .toggle-icon {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
+.accordion .collapse {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #ddd;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.accordion .collapse.show { max-height: 1000px; }
+
+.accordion ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.accordion ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.accordion ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #28a745;
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: bold;
+}
+.accordion .collapse h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.accordion ul li::marker { color: #28a745; font-weight: bold; }
+
+.accordion > h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.booking-error {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fdecea;
+  color: #c0392b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #f5c6cb;
+}
